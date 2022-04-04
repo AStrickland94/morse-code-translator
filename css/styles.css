@@ -1,0 +1,23 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainDiv {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h2 {
+  text-align: center;
+}
+
+textarea {
+  font-size: larger;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  align-self: center;
+}
