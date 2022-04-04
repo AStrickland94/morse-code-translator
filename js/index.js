@@ -5,23 +5,27 @@ const morseText = document.querySelector("#morseText");
 const transBtn = document.querySelector("#transBtn");
 let active = "";
 
-/* const reversedIndex = Object.entries(index).reduce((acc, [key, value]) => {
-    acc[value] = key;
-    return acc;
-}, {}); */
-
+//select the most recently edited textarea
 engText.addEventListener("input", () => (active = "eng"));
 morseText.addEventListener("input", () => (active = "morse"));
 
 transBtn.addEventListener("click", () => translation());
 
 function translation() {
+    //if the most recent text was in the english box and it isn't empty
     if (active === "eng" && engText.value !== "") {
         morseText.value = engText.value
             .toLowerCase()
             .split("")
             .map((char) => {
-                return Object.entries(index).find((key) => key[0] === char)[1];
+                const found = Object.entries(index).find(
+                    (key) => key[0] === char,
+                );
+                //if the value isn't found then return an error character
+                if (found === undefined) {
+                    return "#";
+                }
+                return found[1];
             })
             .join(" ");
         return;
@@ -29,7 +33,13 @@ function translation() {
         engText.value = morseText.value
             .split(" ")
             .map((char) => {
-                return Object.entries(index).find((key) => key[1] === char)[0];
+                const found = Object.entries(index).find(
+                    (key) => key[1] === char,
+                );
+                if (found === undefined) {
+                    return "#";
+                }
+                return found[0];
             })
             .join("");
     } else {
