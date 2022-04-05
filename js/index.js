@@ -4,6 +4,8 @@ const engText = document.querySelector("#engText");
 const morseText = document.querySelector("#morseText");
 const transBtn = document.querySelector("#transBtn");
 let active = "";
+engText.value = "";
+morseText.value = "";
 
 //select the most recently edited textarea
 engText.addEventListener("input", () => (active = "eng"));
